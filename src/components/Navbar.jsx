@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Home, Info, Briefcase, Phone, Sun, Moon } from "lucide-react";
+import { Home, Info, Briefcase, Phone, Menu, X } from "lucide-react"; // Added Menu and X icons
 
 export default function Navbar() {
   const items = [
@@ -12,27 +12,20 @@ export default function Navbar() {
   ];
 
   const [activeTab, setActiveTab] = useState(items[0].name);
-  const [isDark, setIsDark] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Theme toggle
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
     <>
-      {/* ✅ Fixed Navbar directly on top of Hero */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 mt-4">
+      {/* Top Navbar */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center w-[90%] md:w-auto">
+        {/* Desktop Navbar */}
         <div
-          className="flex items-center gap-3 
-          bg-white/70 dark:bg-gray-800/70 
-          border border-gray-300 dark:border-gray-600 
-          backdrop-blur-lg py-1 px-1 rounded-full shadow-lg 
-          transition-colors duration-300"
+          className="hidden md:flex items-center gap-3  
+            bg-white/70 dark:bg-gray-800/70 
+            border border-gray-300 dark:border-gray-600 
+            backdrop-blur-lg py-1 px-1 rounded-full shadow-lg"
         >
           {items.map((item) => {
             const Icon = item.icon;
@@ -43,50 +36,56 @@ export default function Navbar() {
                 key={item.name}
                 href={item.url}
                 onClick={() => setActiveTab(item.name)}
-                className={`relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors ${
-                  isActive
-                    ? "bg-gray-200 dark:bg-gray-700 text-purple-600"
+                className={`relative cursor-pointer text-sm font-semibold 
+                  px-4 md:px-6 py-2 rounded-full flex items-center justify-center transition-colors
+                  ${isActive ? "bg-gray-200 dark:bg-gray-700 text-purple-600"
                     : "text-gray-600 dark:text-gray-300 hover:text-purple-500"
-                }`}
+                  }`}
               >
-                {/* Show text on desktop, icons on mobile */}
-                <span className="hidden md:inline">{item.name}</span>
-                <span className="md:hidden">
-                  <Icon size={18} strokeWidth={2.5} />
-                </span>
-
-                {/* Active tab glowing effect */}
+                {item.name}
                 {isActive && (
                   <motion.div
                     layoutId="lamp"
                     className="absolute inset-0 w-full bg-purple-500/10 rounded-full -z-10"
                     initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  >
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-purple-500 rounded-t-full">
-                      <div className="absolute w-12 h-6 bg-purple-400/20 rounded-full blur-md -top-2 -left-2" />
-                      <div className="absolute w-8 h-6 bg-purple-400/20 rounded-full blur-md -top-1" />
-                      <div className="absolute w-4 h-4 bg-purple-400/20 rounded-full blur-sm top-0 left-2" />
-                    </div>
-                  </motion.div>
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
                 )}
               </a>
             );
           })}
-
-          {/* Theme Toggle Button */}
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="ml-2 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-purple-200 dark:hover:bg-purple-700 transition"
-          >
-            {isDark ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
         </div>
-      </div>
+
+        {/* Mobile Hamburger Icon - positioned at top-right */}
+        <button
+          className="md:hidden fixed top-0 right-0 text-gray-800 dark:text-white p-2 bg-white/70 dark:bg-gray-800/70 rounded-lg shadow-lg z-50"
+          onClick={toggleMobileMenu}
+        >
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-md flex flex-col items-center justify-center gap-6 md:hidden z-40">
+          {items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.name}
+                href={item.url}
+                onClick={() => {
+                  setActiveTab(item.name);
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white text-xl flex gap-2 items-center hover:text-purple-300 transition-colors"
+              >
+                <Icon size={20} /> {item.name}
+              </a>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }

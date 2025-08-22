@@ -2,6 +2,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { HeroSection } from './components/Hero';
+import LogoName from './components/Logo';
 import Navbar from './components/Navbar';
 import Portfolio from './components/Portfolio';
 import Services from './components/Services';
@@ -11,7 +12,9 @@ import WhyChooseUs from './components/WhyChooseUs';
 function App() {
   return (
     <>
+    <LogoName/>
     <Navbar/>
+    <ThemeToggle/>
     <HeroSection/>
     <Services/>
     <Portfolio/>

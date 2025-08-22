@@ -65,7 +65,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="h-full bg-gray-50 dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-700 dark:hover:border-blue-900 shadow-md p-6 text-center group hover:shadow-xl transition-all duration-300">
+              <div className="h-full bg-gray-50 dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-700 dark:hover:border-blue-900 hover:border-blue-900 shadow-md p-6 text-center group hover:shadow-xl transition-all duration-300">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 text-white"
