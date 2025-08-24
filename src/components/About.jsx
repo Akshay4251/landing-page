@@ -30,14 +30,20 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+    <section id="about" className="py-20 bg-white dark:bg-gray-900 overflow-x-hidden">
       <div className="container mx-auto px-6">
-        {/* Heading */}
+        
+        {/* Heading with scroll animation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 12,
+            duration: 1
+          }}
+          viewport={{ once: false, amount: 0.2 }} // triggers every time it's in view
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -55,15 +61,21 @@ const About = () => {
           </p>
         </motion.div>
 
-        {/* Features */}
+        {/* Features with scroll animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 12,
+                duration: 1,
+                delay: index * 0.2 // stagger effect
+              }}
+              viewport={{ once: false, amount: 0.2 }} // triggers on scroll up & down
             >
               <div className="h-full bg-gray-50 dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-700 dark:hover:border-blue-900 hover:border-blue-900 shadow-md p-6 text-center group hover:shadow-xl transition-all duration-300">
                 <motion.div
@@ -83,12 +95,18 @@ const About = () => {
           ))}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with scroll animation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 12,
+            duration: 1.2,
+            delay: 0.5
+          }}
+          viewport={{ once: false, amount: 0.2 }}
           className="mt-20 text-center"
         >
           <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 md:p-12 text-white">

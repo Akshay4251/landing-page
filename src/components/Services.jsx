@@ -61,7 +61,7 @@ const Services = () => {
   const textMuted = isDark ? "#d1d5db" : "#4b5563";
 
   return (
-    <section style={{ padding: "5rem 1.5rem", backgroundColor: isDark ? "#111827" : "#ffffff", transition: "all 0.3s ease" }}>
+    <section style={{ padding: "5rem 1.5rem", backgroundColor: isDark ? "#111827" : "#ffffff", transition: "all 0.3s ease" ,overflowX:"hidden"}}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

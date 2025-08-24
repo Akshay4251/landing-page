@@ -33,8 +33,9 @@ const RetroGrid = ({
             [background-repeat:repeat] 
             [background-size:var(--cell-size)_var(--cell-size)] 
             [height:300vh] 
-            [width:600vw] 
-            [margin-left:-200%] 
+            [width:100vw] 
+            [left:0]
+            // [margin-left:-200%] 
             [transform-origin:100%_0_0]
             dark:[background-image:linear-gradient(to_right,var(--dark-line)_1px,transparent_0),linear-gradient(to_bottom,var(--dark-line)_1px,transparent_0)]
           "
@@ -57,12 +58,12 @@ const HeroSection = forwardRef(
       className,
       title = "Build products for everyone",
       subtitle = {
-        regular: "Designing your projects faster ",
-        gradient: "with the largest figma UI kit.",
+        regular: " Innovating Digital Solutions for ",
+        gradient: " Tomorrow's Technology ",
       },
-      description = "Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium.",
+      description = "Empowering businesses with cutting-edge technology solutions. From web development to AI/ML, we transform your ideas into digital reality.",
       ctaText = "Browse courses",
-      ctaHref = "#",
+      ctaHref = "/portfolio",
       gridOptions,
       ...props
     },
@@ -147,4 +148,4 @@ const HeroSection = forwardRef(
 
 HeroSection.displayName = "HeroSection";
 
-export { HeroSection };
+export default HeroSection ;

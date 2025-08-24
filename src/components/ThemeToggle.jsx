@@ -25,7 +25,7 @@ export default function ThemeToggle() {
         bg-white dark:bg-gray-900 shadow-md transition-colors 
         hover:bg-gray-100 dark:hover:bg-gray-800
 
-        top-4 right-20 md:right-8   
+        top-4 right-20 md:right-8 left-auto translate-x-0 
         w-11 h-11 flex items-center justify-center
       "
     >
