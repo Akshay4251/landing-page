@@ -153,7 +153,7 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-600 dark:text-gray-400 text-sm">
-              © 2024 KALI_BYTE SOLUTIONS. All rights reserved.
+              © 2025 KALI_BYTE SOLUTIONS. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-purple-500 transition-colors">
